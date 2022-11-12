@@ -9,6 +9,7 @@ target 'JJAppUpdateDemo' do
 
   pod 'Masonry', '1.1.0'
   pod 'Toast'
+  pod 'ReactiveObjC'
   # pod 'Protobuf'
 
   target 'JJAppUpdateDemoTests' do

@@ -1,16 +1,19 @@
 PODS:
   - JJAppUpdateSDK (0.0.1)
   - Masonry (1.1.0)
+  - ReactiveObjC (3.1.1)
   - Toast (4.0.0)
 
 DEPENDENCIES:
   - JJAppUpdateSDK (from `./JJAppUpdateSDK`)
   - Masonry (= 1.1.0)
+  - ReactiveObjC
   - Toast
 
 SPEC REPOS:
   trunk:
     - Masonry
+    - ReactiveObjC
     - Toast
 
 EXTERNAL SOURCES:
@@ -20,8 +23,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   JJAppUpdateSDK: 368ba98a1d2095d2c499590b1002fda558b2d603
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: 4258cf545d1b98775101e2394d5d770b1dab772b
+PODFILE CHECKSUM: bad55855a45f2eea14d1f7a7fb1d2cda101be4b6
 
 COCOAPODS: 1.11.3

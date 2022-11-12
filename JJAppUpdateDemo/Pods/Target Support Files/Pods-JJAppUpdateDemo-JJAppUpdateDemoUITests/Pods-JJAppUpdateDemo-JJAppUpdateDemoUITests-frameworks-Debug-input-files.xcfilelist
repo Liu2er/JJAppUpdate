@@ -1,3 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-JJAppUpdateDemo-JJAppUpdateDemoUITests/Pods-JJAppUpdateDemo-JJAppUpdateDemoUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/JJAppUpdateSDK/JJAppUpdateSDK.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
+${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework
 ${BUILT_PRODUCTS_DIR}/Toast/Toast.framework

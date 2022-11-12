@@ -1,0 +1,6 @@
+framework module JJAppUpdateSDK {
+  umbrella header "JJAppUpdateSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
