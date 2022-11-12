@@ -52,7 +52,7 @@
 ```json
 {
 	"extra": {
-		"has_update": "1",
+		"has_update": 1,
 		"new_version": "23.5.0",
 		"open_url": "itms-services://?action=download-manifest&url=https://www.jjappupdate.com/ios/manifest.plist"
 	},
