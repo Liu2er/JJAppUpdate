@@ -6,6 +6,7 @@
 //
 
 #import "JJAppUpdateManager.h"
+#import <CommonCrypto/CommonDigest.h>
 
 NSString * const JJAppUpdateNetErrorMessage = @"网络异常，请稍后重试";
 
@@ -23,6 +24,7 @@ NSString * const JJAppUpdateNetErrorMessage = @"网络异常，请稍后重试";
     NSURL *url = [NSURL URLWithString:@"https://domain/path"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
+    // 需要进行加密，例如 MD5 + 加盐（不过这个应该是公司网络库的基础能力，不需要业务方额外做）
     request.HTTPBody = [[self commonParams] dataUsingEncoding:NSUTF8StringEncoding];
     
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request.copy completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -31,6 +33,7 @@ NSString * const JJAppUpdateNetErrorMessage = @"网络异常，请稍后重试";
             return;
         }
         
+        // 数据解析前需要对加密数据进行解密（应该由网络库SDK内部完成，业务无感知）
         NSError *jsonError;
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data
                                                                  options:kNilOptions
