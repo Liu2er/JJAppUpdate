@@ -43,16 +43,18 @@ NSString * const JJAppUpdateNetErrorMessage = @"网络异常，请稍后重试";
             return;
         }
         
-        NSNumber *status = JJDynamicCast(jsonDict[@"has_update"], NSNumber);
+        NSDictionary *extraDict = JJDynamicCast(jsonDict[@"extra"], NSDictionary);
+        
+        NSNumber *status = JJDynamicCast(extraDict[@"has_update"], NSNumber);
         if (status && status.intValue != 0) {
-            NSString *message = JJDynamicCast(jsonDict[@"message"], NSString);
+            NSString *message = JJDynamicCast(extraDict[@"message"], NSString);
             JJBLOCK_INVOKE(completion, YES, message ?: JJAppUpdateNetErrorMessage, NO, nil);
             return;
         }
         
-        NSNumber *hasUpdate = JJDynamicCast(jsonDict[@"has_update"], NSNumber);
+        NSNumber *hasUpdate = JJDynamicCast(extraDict[@"has_update"], NSNumber);
         if (hasUpdate) {
-            JJBLOCK_INVOKE(completion, NO, nil, hasUpdate.boolValue, JJDynamicCast(jsonDict[@"open_url"], NSString));
+            JJBLOCK_INVOKE(completion, NO, nil, hasUpdate.boolValue, JJDynamicCast(extraDict[@"open_url"], NSString));
             return;
         }
         
