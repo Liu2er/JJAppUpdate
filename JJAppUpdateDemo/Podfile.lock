@@ -1,0 +1,27 @@
+PODS:
+  - JJAppUpdateSDK (0.0.1)
+  - Masonry (1.1.0)
+  - Toast (4.0.0)
+
+DEPENDENCIES:
+  - JJAppUpdateSDK (from `./JJAppUpdateSDK`)
+  - Masonry (= 1.1.0)
+  - Toast
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+    - Toast
+
+EXTERNAL SOURCES:
+  JJAppUpdateSDK:
+    :path: "./JJAppUpdateSDK"
+
+SPEC CHECKSUMS:
+  JJAppUpdateSDK: 368ba98a1d2095d2c499590b1002fda558b2d603
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+
+PODFILE CHECKSUM: 4258cf545d1b98775101e2394d5d770b1dab772b
+
+COCOAPODS: 1.11.3

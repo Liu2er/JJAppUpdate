@@ -1,0 +1,6 @@
+framework module Pods_JJAppUpdateDemo {
+  umbrella header "Pods-JJAppUpdateDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
