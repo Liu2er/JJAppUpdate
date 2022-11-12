@@ -27,7 +27,7 @@
 		"os_version": "16.1",
 		"device_platform": "iphone",
 		"device_type": "iPhone12,3",
-    "channel": "inhouse",
+    		"channel": "inhouse",
 		"sdk_version": "1.2.3",
 		"app_name": "JJAppUpdate",
 		"app_version": "23.3.0",
