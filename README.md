@@ -140,8 +140,3 @@
 
 
 <iframe width=443 height=960 src="./Resources/JJAppUpdateDemo.mp4">
-
-
-
-
-<video src="./Resources/JJAppUpdateDemo.mp4" controls="controls" width="720" height="405"></video>
