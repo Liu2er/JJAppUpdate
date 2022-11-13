@@ -9,6 +9,7 @@
 #import <CommonCrypto/CommonDigest.h>
 
 NSString * const JJAppUpdateNetErrorMessage = @"网络异常，请稍后重试";
+NSString * const JJAppUpdateResultNO = @"已是最新版本";
 
 #define JJDynamicCast(x, c) ((c *)(JJDynamicCastOrNil(x, [c class])))
 
@@ -21,7 +22,8 @@ NSString * const JJAppUpdateNetErrorMessage = @"网络异常，请稍后重试";
 @implementation JJAppUpdateManager
 
 - (void)requestAppUpdateInfo:(RequestCompletionBlock)completion {
-    NSURL *url = [NSURL URLWithString:@"https://domain/path"];
+    // 利用 Mac 自带的 apachectl 命令开启一个本地服务，手机与电脑处于同一网络时可通过 Mac 的 IP 地址直接访问该服务上的资源
+    NSURL *url = [NSURL URLWithString:@"http://192.168.0.145/appupdate.json"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
     // 需要进行加密，例如 MD5 + 加盐（不过这个应该是公司网络库的基础能力，不需要业务方额外做）
@@ -45,7 +47,7 @@ NSString * const JJAppUpdateNetErrorMessage = @"网络异常，请稍后重试";
         
         NSDictionary *extraDict = JJDynamicCast(jsonDict[@"extra"], NSDictionary);
         
-        NSNumber *status = JJDynamicCast(extraDict[@"has_update"], NSNumber);
+        NSNumber *status = JJDynamicCast(jsonDict[@"status"], NSNumber);
         if (status && status.intValue != 0) {
             NSString *message = JJDynamicCast(extraDict[@"message"], NSString);
             JJBLOCK_INVOKE(completion, YES, message ?: JJAppUpdateNetErrorMessage, NO, nil);
@@ -66,6 +68,7 @@ NSString * const JJAppUpdateNetErrorMessage = @"网络异常，请稍后重试";
 }
 
 - (void)doUpdateWithURLString:(NSString *)url {
+    // 如果是直接安装新包，新包打开时理应有 SSO 校验和定位校验，进一步增进安装包的安全性
     if (isEmptyString(url)) {
         url = @"https://apps.apple.com/cn/app/tao-bao-taobao-for-iphone/id387682726";
     }
@@ -74,8 +77,11 @@ NSString * const JJAppUpdateNetErrorMessage = @"网络异常，请稍后重试";
 
 - (NSString *)commonParams {
     // 这里存储了一些通用参数，例如device_id、user_id、app_id、设备平台（iOS or Android）等
-    NSMutableString *commonParams = [NSMutableString string];
-//    [commonParams appendFormat:@"&appid=%@", kJJAppID];
+    NSMutableString *commonParams = [NSMutableString stringWithFormat:@"app_id=%@", @"1128"];
+    [commonParams appendFormat:@"&device_id=%@", @"1825627186151208"];
+    /*
+     * 还有些其它参数
+     */
     return commonParams.copy;
 }
 

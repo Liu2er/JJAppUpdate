@@ -16,7 +16,7 @@
 
 请求方法：Post
 
-请求体：
+请求体举例：
 
 ```json
 {
@@ -27,7 +27,7 @@
 		"os_version": "16.1",
 		"device_platform": "iphone",
 		"device_type": "iPhone12,3",
-    		"channel": "inhouse",
+    "channel": "inhouse",
 		"sdk_version": "1.2.3",
 		"app_name": "JJAppUpdate",
 		"app_version": "23.3.0",
@@ -43,21 +43,33 @@
 }
 ```
 
+> 上述字段为通用参数，不再描述。
+
 
 
 ### 响应
 
 响应体：
 
+| 字段        | 类型   | 必选/可选 | 说明                                   |
+| ----------- | ------ | --------- | -------------------------------------- |
+| has_update  | Int    | 必选      | 是否有更新                             |
+| new_version | String | 可选      | 最新的版本号                           |
+| open_url    | String | 必选      | 更新链接(直接下载/跳转 App Store 链接) |
+
+> 一级字段的 status、message、extra 为标准结构，不再描述。
+
+例如：
+
 ```json
 {
-	"extra": {
-		"has_update": 1,
-		"new_version": "23.5.0",
-		"open_url": "itms-services://?action=download-manifest&url=https://www.jjappupdate.com/ios/manifest.plist"
-	},
-	"message": "success",
-	"status": 0
+    "extra":{
+        "has_update":1,
+        "new_version":"23.5.0",
+        "open_url":"itms-services://?action=download-manifest&url=https://www.jjappupdate.com/ios/manifest.plist"
+    },
+    "message":"success",
+    "status":0
 }
 ```
 
@@ -82,7 +94,7 @@
 
 ### 接口请求
 
-因为请求过程中需要带入设备信息、当前用户信息、版本号等信息，所以采用 POST 协议比较合适，接口的请求参数中包含了用户隐私数据，所以在传递需要进行加密，例如使用加盐+Hash 的方法（不过加密逻辑应该有网络库内部完成，对业务方无感知）。
+因为请求过程中需要带入设备信息、当前用户信息、版本号等信息，所以采用 POST 协议比较合适，接口的请求参数中包含了用户隐私数据，所以在传递需要进行加密，例如使用加盐+Hash 的方法（不过加密逻辑应该有网络库内部完成，业务方无感知）。
 
 
 
@@ -115,3 +127,16 @@
 2. 也可以直接打包成静态库。
 
 考虑到本功能的强业务性，以及为了方便后续的业务迭代，所以本 demo 采用了方案一。
+
+
+
+
+
+### 测试方法
+
+可以利用 Mac 自带的 Apache 服务在 Mac 上开启一个本地服务，将准备好的 json 文件放到服务的根目录，测试机里的 url 地址设置为 `http://<MacIP>/<fileName>` 即可。
+
+测试结果录屏如下：
+
+
+<iframe width=443 height=960 src="./Resources/JJAppUpdateDemo.mp4">

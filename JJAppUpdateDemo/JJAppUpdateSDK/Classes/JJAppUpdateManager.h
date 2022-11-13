@@ -14,6 +14,7 @@ typedef void(^RequestCompletionBlock)(BOOL hasError, NSString * _Nullable messag
 NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXTERN NSString * const JJAppUpdateNetErrorMessage;
+FOUNDATION_EXTERN NSString * const JJAppUpdateResultNO;
 
 @interface JJAppUpdateManager : NSObject
 
